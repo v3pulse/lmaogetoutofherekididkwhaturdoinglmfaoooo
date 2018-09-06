@@ -2,9 +2,7 @@ const Discord = require("discord.js");
 
 const bot = new Discord.Client({disableEveryone: true});
 const apikey = process.env.APIKEY;
-const Fortnite = require("fortnite");
 
-const xp = require("./xp.json");
 const fs = require("fs");
 const botconfig = require("./botconfig.json");
 const token = process.env.BOT_TOKEN;
@@ -29,16 +27,10 @@ fs.readdir("./commands/", (err, files) => {
 
 bot.on("ready", async () => {
 	 console.log(`${bot.user.username} is online!`);
-	 bot.user.setActivity("to your commands!", {type: "LISTENING"});
+	 bot.user.setActivity("Fortnite", {type: "PLAYING"});
 });
 
-bot.on('guildMemberAdd', member => {
-		let platChannel = member.guild.channels.find('name', 'choose-platform');
-		var role = member.guild.roles.find('name', 'Starter');
-	member.addRole(role);
-	member.guild.channels.find('name', 'choose-platform').sendMessage(member.toString() + " Set platform!");
-	platChannel.bulkDelete(1);
-});
+
 
 bot.on("message", async message => {
 	if(message.author.bot) return;
