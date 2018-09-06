@@ -43,9 +43,6 @@ bot.on("message", async message => {
   if(commandfile) commandfile.run(bot,message,args);
 });
  
-bot.on('guildMemberAdd', (guildMember) => {
-   guildMember.addRole(guildMember.guild.roles.find(role => role.name === "Starter"));
-});
 
 
 
