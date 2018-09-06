@@ -61,6 +61,7 @@ bot.on("message", async message => {
 	  let code = message.content.toUpperCase();
 	  if(message.content === "!cls" && message.member.roles.find(r => r.name === "Scrim Staff")){
 	  	message.channel.bulkDelete(10);
+	  }
 
 	
 	  let scrimrole = message.guild.roles.find(`name`, code);
