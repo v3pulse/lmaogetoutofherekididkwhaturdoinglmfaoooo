@@ -111,9 +111,15 @@ bot.on("message", async message => {
 		message.guild.roles.find(role => role.name === code).delete("yeet");
 		
 		}
+		
 
+	}
+	if(cmd === `${prefix}test`){
+		console.log("this works");
 	}
 	  
 	});
+
+
 
 bot.login(token);
