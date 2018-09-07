@@ -21,6 +21,11 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	
 	scrimlast3chan.send(infoScrimEmbed);
 
+	
+	scrimlast3chan.overwritePermissions(message.guild.id, {
+	SEND_MESSAGES: true
+	})
+	await startTimeout(5000);
 	const startTimeout = ms => new Promise(res => setTimeout(res, ms))
 	await startTimeout(2000);
 	let nextgameEmbed = new Discord.RichEmbed()
@@ -39,11 +44,6 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 		sentMessage.edit(nextgameEmbed);
 		await startTimeout(1000 * 60);
 	}
-	
-	scrimlast3chan.overwritePermissions(message.guild.id, {
-	SEND_MESSAGES: true
-	})
-	await startTimeout(5000);
 	
 	
 	
