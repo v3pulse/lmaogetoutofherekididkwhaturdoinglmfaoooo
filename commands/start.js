@@ -103,14 +103,14 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 					
 			
 // 		}
-	const end3Time = Date.now() + 1000 * 60;
-	const sent3Message = await scrimlast3chan.send(startEmbed);
-	let now3;
-	while( (now3 = Date.now()) < end3Time ) {
-		let minsRemaining = (end3Time - now3) / (1000);
+	const end4Time = Date.now() + 1000 * 60;
+	let eb = new Discord.RichEmbed().setColor(16776960).setTitle("Game Information").setFooter(`[Live] With ${allCodeRoles.length} matches.`);
+	const sent4Message = await scrimlast3chan.send(eb);
+	let now4;
+	while( (now4 = Date.now()) < end4Time ) {
+		let minsRemaining = (end4Time - now3) / (1000);
 		minsRemaining = Math.floor(minsRemaining);
 		for(const codeRoles of splitCodeRoles) {
-			let eb = new Discord.RichEmbed().setColor(16776960).setTitle("Game Information").setFooter(`[Live] With ${allCodeRoles.length} matches.`);
 			for(const role of codeRoles) {
 				const membersString = role.members.map(m => m.user.tag).join("\n");
 				eb.addField(`ID: ${role.name}`, membersString, true);
