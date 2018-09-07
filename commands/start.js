@@ -29,7 +29,9 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	const startTimeout = ms => new Promise(res => setTimeout(res, ms))
 	
 	await startTimeout(5000);
-	
+	scrimlast3chan.overwritePermissions(message.guild.id, {
+	SEND_MESSAGES: true
+	})
 	let startEmbed = new Discord.RichEmbed()
 	.setTitle("**Waiting for server IDs...**")
 	.setDescription("You have 60 seconds to type your Last3!")
@@ -45,9 +47,6 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 		sent3Message.edit(startEmbed);
 		await startTimeout(5000);
 	}
-		scrimlast3chan.overwritePermissions(message.guild.id, {
-	SEND_MESSAGES: true
-	})
 	
 	await startTimeout(60000);
 	
@@ -75,9 +74,9 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 			
 			last3chan.send(eb);
 				scrimlast3chan.send("*Chat is now **LOCKED**...*");
-	scrimlast3chan.overwritePermissions(message.guild.id, {
-	SEND_MESSAGES: false
-	})
+		scrimlast3chan.overwritePermissions(message.guild.id, {
+		SEND_MESSAGES: false
+			})
 					
 			
 		}
