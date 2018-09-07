@@ -26,25 +26,27 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	scrimlast3chan.overwritePermissions(message.guild.id, {
 	SEND_MESSAGES: true
 	})
-	
-	const startTimeout = ms => new Promise(res => setTimeout(res, ms))
-	await startTimeout(2000);
-	let nextgameEmbed = new Discord.RichEmbed()
-	.setTitle("**Next snipe in approx...**")
-	.setDescription("*25 Minutes*")
-	.setColor(13859315);
-	let last3chan = message.guild.channels.find(`name`, "scrim-last3");
+		const startTimeout = ms => new Promise(res => setTimeout(res, ms));
 
-		const endTime = Date.now() + 1000 * 60 * 25;
-	const sentMessage = await scrimlast3chan.send(nextgameEmbed);
-	let now;
-	while( (now = Date.now()) < endTime ) {
-		let minsRemaining = (endTime - now) / (1000 * 60);
-		minsRemaining = Math.floor(minsRemaining);
-		nextgameEmbed.setDescription(`*${minsRemaining} Minutes.*`)
-		sentMessage.edit(nextgameEmbed);
-		await startTimeout(1000 * 60);
-	}
+	
+// 	const startTimeout = ms => new Promise(res => setTimeout(res, ms))
+// 	await startTimeout(2000);
+// 	let nextgameEmbed = new Discord.RichEmbed()
+// 	.setTitle("**Next snipe in approx...**")
+// 	.setDescription("*25 Minutes*")
+// 	.setColor(13859315);
+// 	let last3chan = message.guild.channels.find(`name`, "scrim-last3");
+
+// 		const endTime = Date.now() + 1000 * 60 * 25;
+// 	const sentMessage = await scrimlast3chan.send(nextgameEmbed);
+// 	let now;
+// 	while( (now = Date.now()) < endTime ) {
+// 		let minsRemaining = (endTime - now) / (1000 * 60);
+// 		minsRemaining = Math.floor(minsRemaining);
+// 		nextgameEmbed.setDescription(`*${minsRemaining} Minutes.*`)
+// 		sentMessage.edit(nextgameEmbed);
+// 		await startTimeout(1000 * 60);
+// 	}
 	
 	
 	
@@ -54,17 +56,16 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	.setDescription("You have 60 seconds to type your Last3!")
 	.addField("Please enter the last 3 digits of your server!", "When in-game you can find this in the top left corner of your screen.")
 	.setColor(6812512);
-	last3chan.send(startEmbed);
-// 	const end3Time = Date.now() + 1000 * 61;
-// 	const sent3Message = await scrimlast3chan.send(startEmbed);
-// 	let now3;
-// 	while( (now3 = Date.now()) < end3Time ) {
-// 		let minsRemaining = (end3Time - now3) / (1000);
-// 		minsRemaining = Math.floor(minsRemaining);
-// 		startEmbed.setDescription(`You have *${minsRemaining}* seconds to type your Last3!`)
-// 		sent3Message.edit(startEmbed);
-// 		await startTimeout(5000);
-// 	}
+	const end3Time = Date.now() + 1000 * 61;
+	const sent3Message = await scrimlast3chan.send(startEmbed);
+	let now3;
+	while( (now3 = Date.now()) < end3Time ) {
+		let minsRemaining = (end3Time - now3) / (1000);
+		minsRemaining = Math.floor(minsRemaining);
+		startEmbed.setDescription(`You have *${minsRemaining}* seconds to type your Last3!`)
+		sent3Message.edit(startEmbed);
+		await startTimeout(5000);
+	}
 	
 	let embed = new Discord.RichEmbed()
 	.setTitle("Game Information")
@@ -100,6 +101,7 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 // 			})
 			
 // 		}
+	
 	await startTimeout(60000);
 	scrimlast3chan.overwritePermissions(message.guild.id, {
 	SEND_MESSAGES: false
