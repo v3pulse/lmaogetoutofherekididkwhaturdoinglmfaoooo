@@ -123,16 +123,7 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	await msg.react(agree);
 	msg.react(disagree);
 	
-	const endTime = Date.now() + 1000 * 60 * 25;
-	const sentMessage = await scrimlast3chan.send(nextgameEmbed);
-	let now;
-	while( (now = Date.now()) < endTime ) {
-		let minsRemaining = (endTime - now) / (1000 * 60);
-		minsRemaining = Math.floor(minsRemaining);
-		nextgameEmbed.setDescription(`*${minsRemaining} Minutes.*`)
-		sentMessage.edit(nextgameEmbed);
-		await startTimeout(1000 * 60);
-	}
+	
 	
 		
 		
