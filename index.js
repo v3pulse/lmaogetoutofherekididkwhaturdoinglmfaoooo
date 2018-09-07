@@ -99,6 +99,12 @@ bot.on("message", async message => {
 	   	}catch(e){
 		  	console.log(e.stack);
 	  	}
+		const allCodeRoles = message.guild.roles
+ 		.filter(r => (/^\w{3}$/).test(r.name))
+ 		.sort((roleA, roleB) => roleA.name.localeCompare(roleB.name))
+ 		.array();
+ 		const SPLIT_LENGTH = 25;
+ 		const splitCodeRoles = [];
 		for(let i = 0; i < allCodeRoles.length; i += SPLIT_LENGTH){
 			splitCodeRoles.push(allCodeRoles.slice(i, i + SPLIT_LENGTH));
 		}
