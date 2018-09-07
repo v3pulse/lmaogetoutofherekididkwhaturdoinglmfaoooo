@@ -92,10 +92,7 @@ bot.on("message", async message => {
 
 
 		  	});
-
-	   	}catch(e){
-		  	console.log(e.stack);
-	  	}
+			
 		const allCodeRoles = message.guild.roles
 		.filter(r => (/^\w{3}$/).test(r.name))
 		.sort((roleA, roleB) => roleA.name.localeCompare(roleB.name))
@@ -120,6 +117,11 @@ bot.on("message", async message => {
 			})
 			
 		}
+
+	   	}catch(e){
+		  	console.log(e.stack);
+	  	}
+		
 
 
 	  	const eOut = ms => new Promise(res => setTimeout(res, ms))
