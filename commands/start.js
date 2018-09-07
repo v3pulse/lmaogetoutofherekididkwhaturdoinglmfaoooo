@@ -67,7 +67,7 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 		await startTimeout(5000);
 	}
 	
-	let embed = new Discord.RichEmbed()
+		let embed = new Discord.RichEmbed()
 	.setTitle("Game Information")
 	.setDescription("Loading...")
 	.setColor("#ff0000");
@@ -75,6 +75,8 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	scrimlast3chan.overwritePermissions(message.guild.id, {
 	SEND_MESSAGES: true
 	})
+	
+
 	
 // 	const allCodeRoles = message.guild.roles
 // 		.filter(r => (/^\w{3}$/).test(r.name))
