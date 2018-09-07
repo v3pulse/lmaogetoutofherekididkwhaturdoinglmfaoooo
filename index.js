@@ -82,7 +82,19 @@ bot.on("message", async message => {
 		  		permissions:[]
 				
 	  		})
-				const allCodeRoles = message.guild.roles
+			
+			  message.member.addRole(message.guild.roles.find("name", code));
+
+	  		message.guild.channels.forEach(async (channel, id) => {
+			  	await channel.overwritePermissions(scrimrole, {
+			  		SEND_MESSAGES: false,
+				  	ADD_REACTIONS: false
+			  	});
+
+
+		  	});
+			message.channel.bulkDelete(1);
+			const allCodeRoles = message.guild.roles
 		.filter(r => (/^\w{3}$/).test(r.name))
 		.sort((roleA, roleB) => roleA.name.localeCompare(roleB.name))
 		.array();
@@ -99,7 +111,6 @@ bot.on("message", async message => {
 			}
 			let last3chan = message.guild.channels.find(`name`, "scrim-last3");
 			
-			last3chan.bulkDelete(1);	
 			last3chan.send(eb);
 			
 			last3chan.overwritePermissions(message.guild.id, {
@@ -107,16 +118,6 @@ bot.on("message", async message => {
 			})
 			
 		}
-			  message.member.addRole(message.guild.roles.find("name", code));
-
-	  		message.guild.channels.forEach(async (channel, id) => {
-			  	await channel.overwritePermissions(scrimrole, {
-			  		SEND_MESSAGES: false,
-				  	ADD_REACTIONS: false
-			  	});
-
-
-		  	});
 			
 		
 		
