@@ -81,15 +81,15 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	
 
 	
-// 	const allCodeRoles = message.guild.roles
-// 		.filter(r => (/^\w{3}$/).test(r.name))
-// 		.sort((roleA, roleB) => roleA.name.localeCompare(roleB.name))
-// 		.array();
-// 		const SPLIT_LENGTH = 25;
-// 		const splitCodeRoles = [];
-// 		for(let i = 0; i < allCodeRoles.length; i += SPLIT_LENGTH){
-// 			splitCodeRoles.push(allCodeRoles.slice(i, i + SPLIT_LENGTH));
-// 		}
+	const allCodeRoles = message.guild.roles
+		.filter(r => (/^\w{3}$/).test(r.name))
+		.sort((roleA, roleB) => roleA.name.localeCompare(roleB.name))
+		.array();
+		const SPLIT_LENGTH = 25;
+		const splitCodeRoles = [];
+		for(let i = 0; i < allCodeRoles.length; i += SPLIT_LENGTH){
+			splitCodeRoles.push(allCodeRoles.slice(i, i + SPLIT_LENGTH));
+		}
 // 		for(const codeRoles of splitCodeRoles) {
 // 			let eb = new Discord.RichEmbed().setColor(16776960).setTitle("Game Information").setFooter(`[Live] With ${allCodeRoles.length} matches.`);
 // 			for(const role of codeRoles) {
@@ -100,14 +100,27 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 			
 			
 // 			last3chan.send(eb);
-			
-// 			last3chan.overwritePermissions(message.guild.id, {
-// 			SEND_MESSAGES: false
-// 			})
+					
 			
 // 		}
+	const end3Time = Date.now() + 1000 * 60;
+	const sent3Message = await scrimlast3chan.send(startEmbed);
+	let now3;
+	while( (now3 = Date.now()) < end3Time ) {
+		let minsRemaining = (end3Time - now3) / (1000);
+		minsRemaining = Math.floor(minsRemaining);
+		for(const codeRoles of splitCodeRoles) {
+			let eb = new Discord.RichEmbed().setColor(16776960).setTitle("Game Information").setFooter(`[Live] With ${allCodeRoles.length} matches.`);
+			for(const role of codeRoles) {
+				const membersString = role.members.map(m => m.user.tag).join("\n");
+				eb.addField(`ID: ${role.name}`, membersString, true);
+		}
+		sent3Message.edit(startEmbed);
+		await startTimeout(5000);
+	}
 	
 	await startTimeout(60000);
+	scrimlast3chan.send("*Chat is now **LOCKED**...*");
 	scrimlast3chan.overwritePermissions(message.guild.id, {
 	SEND_MESSAGES: false
 	})
