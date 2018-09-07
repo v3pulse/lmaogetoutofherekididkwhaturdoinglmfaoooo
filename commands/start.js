@@ -47,13 +47,9 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 		sent3Message.edit(startEmbed);
 		await startTimeout(5000);
 	}
-	
-	await startTimeout(60000);
-	
-
-	
-
-	
+	scrimlast3chan.overwritePermissions(message.guild.id, {
+		SEND_MESSAGES: true
+	})
 	const allCodeRoles = message.guild.roles
 		.filter(r => (/^\w{3}$/).test(r.name))
 		.sort((roleA, roleB) => roleA.name.localeCompare(roleB.name))
@@ -73,10 +69,11 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 			
 			
 			last3chan.send(eb);
-				scrimlast3chan.send("*Chat is now **LOCKED**...*");
-		scrimlast3chan.overwritePermissions(message.guild.id, {
-		SEND_MESSAGES: false
+			scrimlast3chan.send("*Chat is now **LOCKED**...*");
+			scrimlast3chan.overwritePermissions(message.guild.id, {
+			SEND_MESSAGES: false
 			})
+	
 					
 			
 		}
@@ -94,6 +91,9 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	.setDescription("*25 Minutes*")
 	.setColor(13859315);
 	let last3chan = message.guild.channels.find(`name`, "scrim-last3");
+		scrimlast3chan.overwritePermissions(message.guild.id, {
+		SEND_MESSAGES: false
+			})
 
 		
 		
