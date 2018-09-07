@@ -27,12 +27,7 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	SEND_MESSAGES: true
 	})	
 	
-	let nextgameEmbed = new Discord.RichEmbed()
-	.setTitle("**Next snipe in approx...**")
-	.setDescription("*25 Minutes*")
-	.setColor(13859315);
-	let last3chan = message.guild.channels.find(`name`, "scrim-last3");
-		
+	
 	
 	
 	let startEmbed = new Discord.RichEmbed()
@@ -54,11 +49,7 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	scrimlast3chan.overwritePermissions(message.guild.id, {
 	SEND_MESSAGES: true
 	})
-		
-	await startTimeout(60000);
-	last3chan.overwritePermissions(message.guild.id, {
-			SEND_MESSAGES: false
-			})
+	message.delete().catch(O_o=>{});
 	const allCodeRoles = message.guild.roles
 		.filter(r => (/^\w{3}$/).test(r.name))
 		.sort((roleA, roleB) => roleA.name.localeCompare(roleB.name))
@@ -87,7 +78,15 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 		
 
 		
-
+	let nextgameEmbed = new Discord.RichEmbed()
+	.setTitle("**Next snipe in approx...**")
+	.setDescription("*25 Minutes*")
+	.setColor(13859315);
+	let last3chan = message.guild.channels.find(`name`, "scrim-last3");
+	last3chan.overwritePermissions(message.guild.id, {
+		SEND_MESSAGES: false
+	})
+	
 
 	
 	
