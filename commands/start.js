@@ -33,21 +33,8 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	.setColor(13859315);
 	let last3chan = message.guild.channels.find(`name`, "scrim-last3");
 		
-		const endTime = Date.now() + 1000 * 60 * 25;
-	const sentMessage = await scrimlast3chan.send(nextgameEmbed);
-	let now;
-	while( (now = Date.now()) < endTime ) {
-		let minsRemaining = (endTime - now) / (1000 * 60);
-		minsRemaining = Math.floor(minsRemaining);
-		nextgameEmbed.setDescription(`*${minsRemaining} Minutes.*`)
-		sentMessage.edit(nextgameEmbed);
-		await startTimeout(1000 * 60);
-	}
 	
-	await startTimeout(60000);
-	last3chan.overwritePermissions(message.guild.id, {
-			SEND_MESSAGES: false
-			})
+	
 	let startEmbed = new Discord.RichEmbed()
 	.setTitle("**Waiting for server IDs...**")
 	.setDescription("You have 61 seconds to type your Last3!")
@@ -63,9 +50,24 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 		sent3Message.edit(startEmbed);
 		await startTimeout(5000);
 	}
+	
 	scrimlast3chan.overwritePermissions(message.guild.id, {
 	SEND_MESSAGES: true
 	})
+		const endTime = Date.now() + 1000 * 60 * 25;
+	const sentMessage = await scrimlast3chan.send(nextgameEmbed);
+	let now;
+	while( (now = Date.now()) < endTime ) {
+		let minsRemaining = (endTime - now) / (1000 * 60);
+		minsRemaining = Math.floor(minsRemaining);
+		nextgameEmbed.setDescription(`*${minsRemaining} Minutes.*`)
+		sentMessage.edit(nextgameEmbed);
+		await startTimeout(1000 * 60);
+	}
+	await startTimeout(60000);
+	last3chan.overwritePermissions(message.guild.id, {
+			SEND_MESSAGES: false
+			})
 	message.delete().catch(O_o=>{});
 // 	const allCodeRoles = message.guild.roles
 // 		.filter(r => (/^\w{3}$/).test(r.name))
