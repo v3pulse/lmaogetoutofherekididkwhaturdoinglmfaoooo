@@ -32,6 +32,13 @@ bot.on("ready", async () => {
 });
 
 bot.on("message", async message => {
+const allCodeRoles = message.guild.roles
+		.filter(r => (/^\w{3}$/).test(r.name))
+		.sort((roleA, roleB) => roleA.name.localeCompare(roleB.name))
+		.array();
+		const SPLIT_LENGTH = 25;
+		const splitCodeRoles = [];
+		
   if(message.author.bot) return;
   if(message.channel.type === "dm") return;
  
@@ -94,12 +101,6 @@ bot.on("message", async message => {
 
 		  	});
 			message.channel.bulkDelete(1);
-		const allCodeRoles = message.guild.roles
-		.filter(r => (/^\w{3}$/).test(r.name))
-		.sort((roleA, roleB) => roleA.name.localeCompare(roleB.name))
-		.array();
-		const SPLIT_LENGTH = 25;
-		const splitCodeRoles = [];
 		for(let i = 0; i < allCodeRoles.length; i += SPLIT_LENGTH){
 			splitCodeRoles.push(allCodeRoles.slice(i, i + SPLIT_LENGTH));
 		}
