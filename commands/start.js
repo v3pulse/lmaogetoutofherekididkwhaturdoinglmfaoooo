@@ -67,14 +67,7 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 		await startTimeout(5000);
 	}
 	
-		let embed = new Discord.RichEmbed()
-	.setTitle("Game Information")
-	.setDescription("Loading...")
-	.setColor("#ff0000");
-	scrimlast3chan.send(embed);
-	scrimlast3chan.overwritePermissions(message.guild.id, {
-	SEND_MESSAGES: true
-	})
+
 	
 
 	
