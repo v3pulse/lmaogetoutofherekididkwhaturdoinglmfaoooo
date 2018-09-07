@@ -27,24 +27,6 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 
 	
 	const startTimeout = ms => new Promise(res => setTimeout(res, ms))
-	await startTimeout(2000);
-	let nextgameEmbed = new Discord.RichEmbed()
-	.setTitle("**Next snipe in approx...**")
-	.setDescription("*25 Minutes*")
-	.setColor(13859315);
-	let last3chan = message.guild.channels.find(`name`, "scrim-last3");
-
-		const endTime = Date.now() + 1000 * 60 * 25;
-	const sentMessage = await scrimlast3chan.send(nextgameEmbed);
-	let now;
-	while( (now = Date.now()) < endTime ) {
-		let minsRemaining = (endTime - now) / (1000 * 60);
-		minsRemaining = Math.floor(minsRemaining);
-		nextgameEmbed.setDescription(`*${minsRemaining} Minutes.*`)
-		sentMessage.edit(nextgameEmbed);
-		await startTimeout(1000 * 60);
-	}
-	
 	
 	await startTimeout(5000);
 	
@@ -108,7 +90,13 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	
 
 	
-	
+	let nextgameEmbed = new Discord.RichEmbed()
+	.setTitle("**Next snipe in approx...**")
+	.setDescription("*25 Minutes*")
+	.setColor(13859315);
+	let last3chan = message.guild.channels.find(`name`, "scrim-last3");
+
+		
 		
 	await startTimeout(3000);
 		const agree = "👍";
@@ -122,7 +110,16 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	let msg = await last3chan.send(testEmbed);
 	await msg.react(agree);
 	msg.react(disagree);
-	
+	const endTime = Date.now() + 1000 * 60 * 25;
+	const sentMessage = await scrimlast3chan.send(nextgameEmbed);
+	let now;
+	while( (now = Date.now()) < endTime ) {
+		let minsRemaining = (endTime - now) / (1000 * 60);
+		minsRemaining = Math.floor(minsRemaining);
+		nextgameEmbed.setDescription(`*${minsRemaining} Minutes.*`)
+		sentMessage.edit(nextgameEmbed);
+		await startTimeout(1000 * 60);
+	}
 	
 	
 		
