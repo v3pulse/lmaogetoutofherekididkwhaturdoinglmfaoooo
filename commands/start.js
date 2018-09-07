@@ -115,9 +115,11 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 				const membersString = role.members.map(m => m.user.tag).join("\n");
 				eb.addField(`ID: ${role.name}`, membersString, true);
 		}
+		}
 		sent3Message.edit(startEmbed);
 		await startTimeout(5000);
 	}
+		
 	
 	await startTimeout(60000);
 	scrimlast3chan.send("*Chat is now **LOCKED**...*");
