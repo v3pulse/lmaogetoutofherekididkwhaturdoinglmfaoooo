@@ -26,7 +26,6 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	scrimlast3chan.overwritePermissions(message.guild.id, {
 	SEND_MESSAGES: true
 	})
-		const startTimeout = ms => new Promise(res => setTimeout(res, ms));
 
 	
 	const startTimeout = ms => new Promise(res => setTimeout(res, ms))
