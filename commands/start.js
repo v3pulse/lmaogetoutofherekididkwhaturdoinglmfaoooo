@@ -51,19 +51,20 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	
 	let startEmbed = new Discord.RichEmbed()
 	.setTitle("**Waiting for server IDs...**")
-	.setDescription("You have 61 seconds to type your Last3!")
+	.setDescription("You have 60 seconds to type your Last3!")
 	.addField("Please enter the last 3 digits of your server!", "When in-game you can find this in the top left corner of your screen.")
 	.setColor(6812512);
-	const end3Time = Date.now() + 1000 * 61;
-	const sent3Message = await scrimlast3chan.send(startEmbed);
-	let now3;
-	while( (now3 = Date.now()) < end3Time ) {
-		let minsRemaining = (end3Time - now3) / (1000);
-		minsRemaining = Math.floor(minsRemaining);
-		startEmbed.setDescription(`You have *${minsRemaining}* seconds to type your Last3!`)
-		sent3Message.edit(startEmbed);
-		await startTimeout(5000);
-	}
+	last3chan.send(startEmbed);
+// 	const end3Time = Date.now() + 1000 * 61;
+// 	const sent3Message = await scrimlast3chan.send(startEmbed);
+// 	let now3;
+// 	while( (now3 = Date.now()) < end3Time ) {
+// 		let minsRemaining = (end3Time - now3) / (1000);
+// 		minsRemaining = Math.floor(minsRemaining);
+// 		startEmbed.setDescription(`You have *${minsRemaining}* seconds to type your Last3!`)
+// 		sent3Message.edit(startEmbed);
+// 		await startTimeout(5000);
+// 	}
 	
 	let embed = new Discord.RichEmbed()
 	.setTitle("Game Information")
