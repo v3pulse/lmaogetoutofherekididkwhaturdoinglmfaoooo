@@ -6,7 +6,7 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 		scrimlast3chan.overwritePermissions(message.guild.id, {
 	SEND_MESSAGES: false
 	})
-	message.delete();
+	message.delete().catch(O_o=>{});
 	scrimlast3chan.send("*Chat will soon be unlocked!*");
 	let nficon = bot.user.displayAvatarURL;
 	let negicon = message.author.displayAvatarURL;
@@ -74,7 +74,6 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	SEND_MESSAGES: true
 	})
 	
-	message.delete().catch(O_o=>{});
 // 	const allCodeRoles = message.guild.roles
 // 		.filter(r => (/^\w{3}$/).test(r.name))
 // 		.sort((roleA, roleB) => roleA.name.localeCompare(roleB.name))
