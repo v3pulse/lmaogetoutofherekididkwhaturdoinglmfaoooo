@@ -44,7 +44,6 @@ bot.on("message", async message => {
   if(commandfile) commandfile.run(bot,message,args);
  	if(message.channel.id === "478949150340153358"){
   	if(message.content === "!start" && message.member.roles.find(r => r.name === "Scrim Staff")){
-		  message.reply("Please use the #scrim-chat channel for that!").then(msg => msg.delete(2000));
 		
 		  return;
 	   	
