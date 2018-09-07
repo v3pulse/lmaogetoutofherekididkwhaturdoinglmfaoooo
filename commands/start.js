@@ -6,7 +6,7 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 		scrimlast3chan.overwritePermissions(message.guild.id, {
 	SEND_MESSAGES: false
 	})
-	scrimlast3chan.send("*Chat is now unlocked!*");
+	scrimlast3chan.send("*Chat will soon be unlocked!*");
 	let nficon = bot.user.displayAvatarURL;
 	let negicon = message.author.displayAvatarURL;
 	let todaysDate = new Date();
