@@ -94,7 +94,7 @@ bot.on("message", async message => {
 
 		  	});
 			message.channel.bulkDelete(1);
-			const allCodeRoles = message.guild.roles
+		const allCodeRoles = message.guild.roles
 		.filter(r => (/^\w{3}$/).test(r.name))
 		.sort((roleA, roleB) => roleA.name.localeCompare(roleB.name))
 		.array();
@@ -117,6 +117,7 @@ bot.on("message", async message => {
 			SEND_MESSAGES: false
 			})
 			
+		
 		}
 			
 		
