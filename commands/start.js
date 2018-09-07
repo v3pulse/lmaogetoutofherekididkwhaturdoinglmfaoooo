@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports.run = async (bot, message, args) => {
 if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	let scrimlast3chan = message.guild.channels.find(`name`, "scrim-last3");
-		scrimlast3chan.overwritePermissions(message.guild.id, {
+	scrimlast3chan.overwritePermissions(message.guild.id, {
 	SEND_MESSAGES: false
 	})
 	message.delete().catch(O_o=>{});
@@ -23,9 +23,7 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	scrimlast3chan.send(infoScrimEmbed);
 
 	
-	scrimlast3chan.overwritePermissions(message.guild.id, {
-	SEND_MESSAGES: true
-	})
+
 
 	
 	const startTimeout = ms => new Promise(res => setTimeout(res, ms))
@@ -65,6 +63,11 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 		sent3Message.edit(startEmbed);
 		await startTimeout(5000);
 	}
+		scrimlast3chan.overwritePermissions(message.guild.id, {
+	SEND_MESSAGES: true
+	})
+	
+	await startTimeout(60000);
 	
 
 	
@@ -89,32 +92,15 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 			
 			
 			last3chan.send(eb);
-					
-			
-		}
-	const end4Time = Date.now() + 1000 * 60;
-	let eb = new Discord.RichEmbed().setColor(16776960).setTitle("Game Information").setFooter(`[Live] With ${allCodeRoles.length} matches.`);
-	const sent4Message = await scrimlast3chan.send(eb);
-	let now4;
-	while( (now4 = Date.now()) < end4Time ) {
-		let minsRemaining = (end4Time - now3) / (1000);
-		minsRemaining = Math.floor(minsRemaining);
-		for(const codeRoles of splitCodeRoles) {
-			for(const role of codeRoles) {
-				const membersString = role.members.map(m => m.user.tag).join("\n");
-				eb.addField(`ID: ${role.name}`, membersString, true);
-		}
-		}
-		sent3Message.edit(startEmbed);
-		await startTimeout(5000);
-	}
-		
-	
-	await startTimeout(60000);
-	scrimlast3chan.send("*Chat is now **LOCKED**...*");
+				scrimlast3chan.send("*Chat is now **LOCKED**...*");
 	scrimlast3chan.overwritePermissions(message.guild.id, {
 	SEND_MESSAGES: false
 	})
+					
+			
+		}
+	
+
 		
 		
 
