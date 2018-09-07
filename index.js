@@ -67,7 +67,12 @@ bot.on("message", async message => {
 	  let scrimrole = message.guild.roles.find(`name`, code);
 	  if(message.member.roles.has(scrimrole)) return message.author.send("You already typed in a game code!");
 	  if(code.length != 3) return;
-	
+		const allCodeRoles = message.guild.roles
+		.filter(r => (/^\w{3}$/).test(r.name))
+		.sort((roleA, roleB) => roleA.name.localeCompare(roleB.name))
+		.array();
+		const SPLIT_LENGTH = 25;
+		const splitCodeRoles = [];
 
 	  let nickname = message.member.nickname;
 	  if(scrimrole){
@@ -93,12 +98,7 @@ bot.on("message", async message => {
 
 		  	});
 			
-		const allCodeRoles = message.guild.roles
-		.filter(r => (/^\w{3}$/).test(r.name))
-		.sort((roleA, roleB) => roleA.name.localeCompare(roleB.name))
-		.array();
-		const SPLIT_LENGTH = 25;
-		const splitCodeRoles = [];
+		
 		for(let i = 0; i < allCodeRoles.length; i += SPLIT_LENGTH){
 			splitCodeRoles.push(allCodeRoles.slice(i, i + SPLIT_LENGTH));
 		}
