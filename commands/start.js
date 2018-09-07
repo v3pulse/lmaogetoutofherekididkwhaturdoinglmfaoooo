@@ -25,7 +25,7 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	scrimlast3chan.overwritePermissions(message.guild.id, {
 	SEND_MESSAGES: true
 	})
-	await startTimeout(5000);
+	
 	const startTimeout = ms => new Promise(res => setTimeout(res, ms))
 	await startTimeout(2000);
 	let nextgameEmbed = new Discord.RichEmbed()
