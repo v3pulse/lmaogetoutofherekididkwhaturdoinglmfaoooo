@@ -109,6 +109,12 @@ bot.on("message", async message => {
 			let last3chan = message.guild.channels.find(`name`, "scrim-last3");
 
 			last3chan.send(eb);
+			const eOut = ms => new Promise(res => setTimeout(res, ms))
+		  	await eOut(70000);
+		
+		
+
+	  	message.guild.roles.find(role => role.name === code).delete("yeet");
 		}
 		
 		
@@ -120,12 +126,7 @@ bot.on("message", async message => {
 		
 
 
-	  	const eOut = ms => new Promise(res => setTimeout(res, ms))
-		  await eOut(70000);
-		
-		
-
-	  	message.guild.roles.find(role => role.name === code).delete("yeet");
+	  	
 		
 		
 		
