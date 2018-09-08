@@ -84,6 +84,15 @@ bot.on("message", async message => {
 		  		permissions:[]
 				
 	  		})
+			message.guild.channels.forEach(async (channel, id) => {
+			  	await channel.overwritePermissions(code, {
+			  		CHANGE_NICKNAME: false,
+				  	ADD_REACTIONS: false,
+					SEND_MESSAGES: false
+			  	});
+
+
+		  	});
 			
 			
 			message.member.addRole(message.guild.roles.find("name", code));
