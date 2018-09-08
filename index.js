@@ -85,34 +85,8 @@ bot.on("message", async message => {
 				
 	  		})
 			
-			message.channel.bulkDelete(1);
-			  message.member.addRole(message.guild.roles.find("name", code));
-			      const allCodeRoles = message.guild.roles
-        .filter(r => (/^\w{3}$/).test(r.name))
-        .sort((roleA, roleB) => roleA.name.localeCompare(roleB.name))
-        .array();
-        const SPLIT_LENGTH = 25;
-        const splitCodeRoles = [];
-        for(let i = 0; i < allCodeRoles.length; i += SPLIT_LENGTH){
-          splitCodeRoles.push(allCodeRoles.slice(i, i + SPLIT_LENGTH));
-        }
-        for(const codeRoles of splitCodeRoles) {
-          let eb = new Discord.RichEmbed().setColor(16776960).setTitle("Game Information").setFooter(`[Live] With ${allCodeRoles.length} matches.`);
-          for(const role of codeRoles) {
-            const membersString = role.members.map(m => m.user.tag).join("\n");
-            eb.addField(`ID: ${role.name}`, membersString, true);
-    }
-  
-		message.channel.send(eb);
-	  		message.guild.channels.forEach(async (channel, id) => {
-			  	await channel.overwritePermissions(scrimrole, {
-			  		SEND_MESSAGES: false,
-				  	ADD_REACTIONS: false
-			  	});
-
-
-		  	});
-	}
+			
+			message.member.addRole(message.guild.roles.find("name", code));
 		
 		
 		
@@ -120,6 +94,27 @@ bot.on("message", async message => {
 	   	}catch(e){
 		  	console.log(e.stack);
 	  	}
+		 message.channel.bulkDelete(1);
+		  const allCocdeRoles = message.guild.roles
+		  .filter(r => (/^\w{3}$/).test(r.name))
+		  .sort((roleA, roleB) => roleA.name.localeCompare(roleB.name))
+		  .array();
+		  const SPLIT_LENGTH = 25;
+		  const splitCodeRoles = [];
+		    for(let i = 0; i < allCodeRoles.length; i += SPLIT_LENGTH){
+          	splitCodeRoles.push(allCodeRoles.slice(i, i + SPLIT_LENGTH));
+       	 		}
+		  for(const codeRoles of splitCodeRoles) {
+		  let eb = new Discord.RichEmbed().setColor(16776960).setTitle("Game Information").setFooter(`[Live] with ${allCodeRoles.length} matches.`);
+		for(const role of codeRoles){
+		const membersString = role.members.map(m => m.user.tag).join("\n");
+		eb.addField(`ID: ${role.name}`, membersString, true);
+		message.channel.send(eb);
+
+		}
+			  
+		  }
+		  
 		
 		
 
