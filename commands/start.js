@@ -32,25 +32,41 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	scrimlast3chan.overwritePermissions(message.guild.id, {
 	SEND_MESSAGES: true
 	})
-	let startEmbed = new Discord.RichEmbed()
-	.setTitle("**Waiting for server IDs...**")
-	.setDescription("You have 61 seconds to type your Last3!")
+	let starting = new Discord.RichEmbed()
+	.setTitle("Waiting for server IDs...")
 	.addField("Please enter the last 3 digits of your server!", "When in-game you can find this in the top left corner of your screen.")
 	.setColor(6812512);
-	const end3Time = Date.now() + 1000 * 61;
-	const sent3Message = await scrimlast3chan.send(startEmbed);
-	let now3;
-	while( (now3 = Date.now()) < end3Time ) {
-		let minsRemaining = (end3Time - now3) / (1000);
-		minsRemaining = Math.floor(minsRemaining);
-		startEmbed.setDescription(`You have *${minsRemaining}* seconds to type your Last3!`)
-		sent3Message.edit(startEmbed);
-		await startTimeout(5000);
-		
-	}
+	scrimlast3chan.send(starting);
+	let gameinfo = new Discord.RichEmbed()
+	.setTitle("Game Information")
+	.setColor("#ff0000")
+	.setDescription("Loading");
+	scrimlast3chan.send(gameinfo);
+	
+	await startTimeout(60000);
 	scrimlast3chan.overwritePermissions(message.guild.id, {
-		SEND_MESSAGES: true
-	})
+		SEND_MESSAGES: false
+	});
+	scrimlast3chan.send("Chat is now **LOCKED**...");
+// 	let startEmbed = new Discord.RichEmbed()
+// 	.setTitle("**Waiting for server IDs...**")
+// 	.setDescription("You have 61 seconds to type your Last3!")
+// 	.addField("Please enter the last 3 digits of your server!", "When in-game you can find this in the top left corner of your screen.")
+// 	.setColor(6812512);
+// 	const end3Time = Date.now() + 1000 * 61;
+// 	const sent3Message = await scrimlast3chan.send(startEmbed);
+// 	let now3;
+// 	while( (now3 = Date.now()) < end3Time ) {
+// 		let minsRemaining = (end3Time - now3) / (1000);
+// 		minsRemaining = Math.floor(minsRemaining);
+// 		startEmbed.setDescription(`You have *${minsRemaining}* seconds to type your Last3!`)
+// 		sent3Message.edit(startEmbed);
+// 		await startTimeout(5000);
+		
+// 	}
+// 	scrimlast3chan.overwritePermissions(message.guild.id, {
+// 		SEND_MESSAGES: true
+// 	})
 // 	const allCodeRoles = message.guild.roles
 // 		.filter(r => (/^\w{3}$/).test(r.name))
 // 		.sort((roleA, roleB) => roleA.name.localeCompare(roleB.name))
