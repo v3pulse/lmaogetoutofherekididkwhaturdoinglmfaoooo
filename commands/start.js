@@ -46,6 +46,7 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 		startEmbed.setDescription(`You have *${minsRemaining}* seconds to type your Last3!`)
 		sent3Message.edit(startEmbed);
 		await startTimeout(5000);
+		
 	}
 	scrimlast3chan.overwritePermissions(message.guild.id, {
 		SEND_MESSAGES: true
@@ -77,11 +78,7 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 					
 			
 		//}
-	let gameinfo = new Discord.RichEmbed()
-	.setTitle("Game Information")
-	.setDescription("Loading...")
-	.setColor("ff0000");
-	scrimlast3chan.send(gameinfo);
+
 	
 
 		
