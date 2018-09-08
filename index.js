@@ -88,7 +88,10 @@ bot.on("message", async message => {
 			
 			message.member.addRole(message.guild.roles.find("name", code));
 			message.channel.bulkDelete(1);
+			 const startTimeout = ms => new Promise(res => setTimeout(res, ms))
+			await startTimeout(2000);
 			const allCodeRoles = message.guild.roles
+			
 		.filter(r => (/^\w{3}$/).test(r.name))
 		.sort((roleA, roleB) => roleA.name.localeCompare(roleB.name))
 		.array();
