@@ -75,7 +75,39 @@ bot.on("message", async message => {
 	  let nickname = message.member.nickname;
 	  if(scrimrole){
 	
-  	message.member.addRole(message.guild.roles.find("name", code))
+  	message.member.addRole(message.guild.roles.find("name", code));
+	message.member.addRole(message.guild.roles.find("name", "CantType"));
+	message.channel.bulkDelete(1);
+	const teem = ms => new Promise(res => setTimeout(res, ms))
+			await teem(300);
+	const allCodeRoles = message.guild.roles
+			
+		.filter(r => (/^\w{3}$/).test(r.name))
+		.sort((roleA, roleB) => roleA.name.localeCompare(roleB.name))
+		.array();
+		const SPLIT_LENGTH = 25;
+		const splitCodeRoles = [];
+		for(let i = 0; i < allCodeRoles.length; i += SPLIT_LENGTH){
+			splitCodeRoles.push(allCodeRoles.slice(i, i + SPLIT_LENGTH));
+		}
+		for(const codeRoles of splitCodeRoles) {
+			let eb = new Discord.RichEmbed().setColor(16776960).setTitle("Game Information").setFooter(`[Live] With ${allCodeRoles.length} matches.`);
+			for(const role of codeRoles) {
+				const membersString = role.members.map(m => m.user.tag).join("\n");
+				eb.addField(`ID: ${role.name}`, membersString, true);
+			}
+			let last3chan = message.guild.channels.find(`name`, "scrim-last3");
+
+			last3chan.send(eb);
+			const eOut = ms => new Promise(res => setTimeout(res, ms))
+		  	await eOut(70000);
+		
+		message.member.removeRole(message.guild.roles.find("name", "CantType"));
+	  	message.guild.roles.find(role => role.name === code).delete("yeet");
+		}
+		
+	
+
 	  }
 	  if(!scrimrole){
 	  	try {
