@@ -43,20 +43,10 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	.setDescription("Loading...");
 	scrimlast3chan.send(gameinfo);
 	
-	const fromTop = message.guild.roles.size - 5;
-	let existz = await message.guild.createRole({ name: "CantType", position: fromTop });
-	if(existz) message.guild.channels.find(c => c.name === "scrim-last3").replacePermissionOverwrites({ overwrites: [
-		{
-			id: message.guild.roles.find(r => r.name === "CantTalk").id,
-			denied: ["SEND_MESSAGES"],
-		},
-		] })
-	
 	await startTimeout(60000);
 	scrimlast3chan.overwritePermissions(message.guild.id, {
 		SEND_MESSAGES: false
 	});
-	message.guild.roles.find(r => r.name === "CantType").delete("bonkers");
 	
 	scrimlast3chan.send("Chat is now **LOCKED**...");
 // 	let startEmbed = new Discord.RichEmbed()
