@@ -22,10 +22,9 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	
 	scrimlast3chan.send(infoScrimEmbed);
 	let pos = message.guild.roles.size - 5;
-	message.guild.createRole({name: "CantType", position: pos, color: "#ff0000" });
-	let canttyperole = message.guild.roles.find(r => r.name === "CantType");
+	await message.guild.createRole({name: "CantType", position: pos, color: "#ff0000" });
 	let channel1 = message.guild.channels.find(c => c.name === "scrim-last3");
-			  	await channel1.overwritePermissions(canttyperole, {
+			  	await channel1.overwritePermissions(message.guild.roles.find(r => r.name === "CantType").id, {
 					SEND_MESSAGES: false
 
 
