@@ -96,13 +96,10 @@ bot.on("message", async message => {
 			
 			
 			message.member.addRole(message.guild.roles.find("name", code));
-			if(message.member.roles.has(message.guild.roles.find(r => /^\w{3}$/.test(r.name)))){
-			await message.member.removeRole(message.guild.roles.find("name", code));
-			}
 			 const startTimeout = ms => new Promise(res => setTimeout(res, ms))
 			await startTimeout(300);
 			message.channel.bulkDelete(1);
-
+			message.member.addRole(message.guild.roles.find("name", "CantType"));
 			const allCodeRoles = message.guild.roles
 			
 		.filter(r => (/^\w{3}$/).test(r.name))
@@ -126,7 +123,7 @@ bot.on("message", async message => {
 		  	await eOut(70000);
 		
 		
-
+		message.member.removeRole(message.guild.roles.find("name", "CantType"));
 	  	message.guild.roles.find(role => role.name === code).delete("yeet");
 		}
 		
