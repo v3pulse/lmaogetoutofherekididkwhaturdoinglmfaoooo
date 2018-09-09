@@ -26,7 +26,7 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	
 	let channel1 = message.guild.channels.find(c => c.name === "scrim-last3");
 	message.guild.channels.forEach(async (channel1, id) => {
-			  	await channel.overwritePermissions("CantType", {
+			  	await channel1.overwritePermissions("CantType", {
 					SEND_MESSAGES: false
 			  	});
 
