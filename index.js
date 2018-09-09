@@ -66,11 +66,10 @@ bot.on("message", async message => {
 	  }
 
 	let last3ch = message.guild.channels.find("name", "scrim-last3");
-	  let threrole = message.guild.roles.find(r => (/^\w{3}$/).test(r.name));
 	  let scrimrole = message.guild.roles.find(`name`, code);
 	  if(message.member.roles.has(scrimrole)) return message.author.send("You already typed in a game code!");
 	  if(code.length != 3) return;
-	  if(message.member.roles.has(threrole)) return;
+	  if(message.member.roles.has(message.guild.roles.find(r => /^\d{3}$/.test(r.name)))) return;
 		
 
 	  let nickname = message.member.nickname;
