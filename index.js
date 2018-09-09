@@ -90,7 +90,7 @@ bot.on("message", async message => {
 
 
 		  	});
-		}
+		
 		  try{
 			
 			
