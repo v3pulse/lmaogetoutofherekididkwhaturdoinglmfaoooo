@@ -97,9 +97,7 @@ bot.on("message", async message => {
 			
 			message.member.addRole(message.guild.roles.find("name", code));
 			message.channel.bulkDelete(1);
-			last3ch.overwritePermissions(message.guild.id, {
-			SEND_MESSAGES: false
-			})
+
 			 const startTimeout = ms => new Promise(res => setTimeout(res, ms))
 			await startTimeout(300);
 			const allCodeRoles = message.guild.roles
