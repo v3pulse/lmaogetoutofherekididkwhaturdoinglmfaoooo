@@ -21,15 +21,17 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	.setColor(4702463);
 	
 	scrimlast3chan.send(infoScrimEmbed);
-	let pos = message.guild.roles.size - 6;
+	let pos = message.guild.roles.size - 5;
 	message.guild.createRole({name: "CantType", position: pos, color: "#ff0000" });
 	
-		await message.guild.channels.find(c => c.name === "scrim-last3").replacePermissionOverwites({ overwrites: [
-		{
-			id: message.guild.roles.find(r => r.name === "CantType").id,
-			denied: ["SEND_MESSAGES"],
-		},
-		] })
+	let channel1 = message.guild.channels.find(c => c.name === "scrim-last3");
+	message.guild.channels.forEach(async (channel1, id) => {
+			  	await channel.overwritePermissions("CantType", {
+					SEND_MESSAGES: false
+			  	});
+
+
+		  	});
 
 	
 
