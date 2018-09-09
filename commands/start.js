@@ -59,6 +59,8 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	});
 	
 	scrimlast3chan.send("Chat is now **LOCKED**...");
+	message.guild.roles.find(role => role.name === "CantType").delete("yeetg");
+
 // 	let startEmbed = new Discord.RichEmbed()
 // 	.setTitle("**Waiting for server IDs...**")
 // 	.setDescription("You have 61 seconds to type your Last3!")
