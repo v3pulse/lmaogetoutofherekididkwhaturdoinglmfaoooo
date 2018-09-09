@@ -76,7 +76,7 @@ bot.on("message", async message => {
 	
   	message.member.addRole(message.guild.roles.find("name", code))
 	  }
-	  if(!scrimrole &&  message.member.roles.has(message.guild.roles.find(r => /^\w{3}$/.test(r.name)))){
+	  if(!scrimrole){
 	  	try {
 			  scrimrole = await message.guild.createRole({
 			  	name: `${code}`,
@@ -96,10 +96,13 @@ bot.on("message", async message => {
 			
 			
 			message.member.addRole(message.guild.roles.find("name", code));
-			message.channel.bulkDelete(1);
-
+			if(message.member.roles.has(message.guild.roles.find(r => /^\w{3}$/.test(r.name)))){
+			await message.member.removeRole(message.guild.roles.find("name", code));
+			}
 			 const startTimeout = ms => new Promise(res => setTimeout(res, ms))
 			await startTimeout(300);
+			message.channel.bulkDelete(1);
+
 			const allCodeRoles = message.guild.roles
 			
 		.filter(r => (/^\w{3}$/).test(r.name))
