@@ -43,11 +43,11 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	.setDescription("Loading...");
 	scrimlast3chan.send(gameinfo);
 	
-	const fromTop = message.guild.roles.size - 6;
+	const fromTop = message.guild.roles.size - 5;
 	message.guild.createRole({ name: "CantType", position: fromTop });
 	message.guild.channels.find(c => c.name === "scrim-last3").replacePermissionOverwrites({ overwrites: [
 		{
-			id: message.guild.roles.find(r => r.name === "CantTalk"),
+			id: message.guild.roles.find(r => r.name === "CantTalk").id,
 			denied: ["SEND_MESSAGES"],
 		},
 		] })
