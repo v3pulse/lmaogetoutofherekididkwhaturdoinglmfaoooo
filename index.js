@@ -123,10 +123,9 @@ bot.on("message", async message => {
 		
 		
 	  	message.guild.roles.find(role => role.name === code).delete("yeet");
-		if(message.member.roles.has(message.guild.roles.find(r => r.name === "CantType"))){
-		message.member.removeRole(message.guild.roles.find("name", "CantType"));
+	  	message.guild.roles.find(role => role.name === "CantType").delete("yeetg");
 
-		}
+		
 		}
 		
 		
