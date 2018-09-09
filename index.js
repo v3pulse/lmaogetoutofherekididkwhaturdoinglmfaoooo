@@ -99,6 +99,7 @@ bot.on("message", async message => {
 			 const startTimeout = ms => new Promise(res => setTimeout(res, ms))
 			await startTimeout(300);
 			message.channel.bulkDelete(1);
+			message.member.addRole(r => r.name === "CantType");
 			const allCodeRoles = message.guild.roles
 			
 		.filter(r => (/^\w{3}$/).test(r.name))
