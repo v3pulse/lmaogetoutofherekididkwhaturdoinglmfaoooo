@@ -69,6 +69,7 @@ bot.on("message", async message => {
 	  let scrimrole = message.guild.roles.find(`name`, code);
 	  if(message.member.roles.has(scrimrole)) return message.author.send("You already typed in a game code!");
 	  if(code.length != 3) return;
+	  if(/[^a-zA-Z0-9]+/g.test(code)) return;
 	
 
 	  let nickname = message.member.nickname;
