@@ -123,7 +123,7 @@ bot.on("message", async message => {
 			const eOut = ms => new Promise(res => setTimeout(res, ms))
 		  	await eOut(70000);
 		
-		
+		message.member.removeRole(message.guild.roles.find("name", "CantType"));
 	  	message.guild.roles.find(role => role.name === code).delete("yeet");
 		}
 		
