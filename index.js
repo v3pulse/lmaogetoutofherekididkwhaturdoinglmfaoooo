@@ -65,7 +65,7 @@ bot.on("message", async message => {
 	  	message.channel.bulkDelete(10);
 	  }
 
-	
+	let last3ch = message.guild.channels.find("name", "scrim-last3");
 	  let scrimrole = message.guild.roles.find(`name`, code);
 	  if(message.member.roles.has(scrimrole)) return message.author.send("You already typed in a game code!");
 	  if(code.length != 3) return;
@@ -97,6 +97,9 @@ bot.on("message", async message => {
 			
 			message.member.addRole(message.guild.roles.find("name", code));
 			message.channel.bulkDelete(1);
+			last3ch.overwritePermissions(message.guild.id, {
+			SEND_MESSAGES: false
+			})
 			 const startTimeout = ms => new Promise(res => setTimeout(res, ms))
 			await startTimeout(300);
 			const allCodeRoles = message.guild.roles
