@@ -69,7 +69,6 @@ bot.on("message", async message => {
 	  let scrimrole = message.guild.roles.find(`name`, code);
 	  if(message.member.roles.has(scrimrole)) return message.author.send("You already typed in a game code!");
 	  if(code.length != 3) return;
-	  if(message.member.roles.has(message.guild.roles.find(r => /^\d{3}$/.test(r.name)))) return;
 		
 
 	  let nickname = message.member.nickname;
@@ -77,7 +76,7 @@ bot.on("message", async message => {
 	
   	message.member.addRole(message.guild.roles.find("name", code))
 	  }
-	  if(!scrimrole){
+	  if(!scrimrole && message.member.roles.has(message.guild.roles.find(r => /^\d{3}$/.test(r.name)))){
 	  	try {
 			  scrimrole = await message.guild.createRole({
 			  	name: `${code}`,
