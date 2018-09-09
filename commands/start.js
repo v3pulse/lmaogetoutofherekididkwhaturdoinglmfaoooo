@@ -24,7 +24,12 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	let pos = message.guild.roles.size - 6;
 	message.guild.createRole({name: "CantType", position: pos, color: "#ff0000" });
 	
-	
+		await message.guild.channels.find(c => c.name === "scrim-last3").replacePermissionOverwites({ overwrites: [
+		{
+			id: message.guild.roles.find(r => r.name === "CantTalk").id,
+			denied: ["SEND_MESSAGES"],
+		},
+		] })
 
 	
 
@@ -33,12 +38,7 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	const startTimeout = ms => new Promise(res => setTimeout(res, ms))
 	
 	await startTimeout(5000);
-		message.guild.channels.find(c => c.name === "scrim-last3").replacePermissionOverwites({ overwrites: [
-		{
-			id: message.guild.roles.find(r => r.name === "CantTalk").id,
-			denied: ["SEND_MESSAGES"],
-		},
-		] })
+	
 	scrimlast3chan.overwritePermissions(message.guild.id, {
 	SEND_MESSAGES: true
 	})
