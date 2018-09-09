@@ -22,7 +22,7 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	
 	scrimlast3chan.send(infoScrimEmbed);
 	let pos = message.guild.roles.size - 5;
-	message.guild.createRole({name: "CantType", position: pos, color: "#ff0000" });
+	await message.guild.createRole({name: "CantType", position: pos, color: "#ff0000" });
 	
 	let channel1 = message.guild.channels.find(c => c.name === "scrim-last3");
 	message.guild.channels.forEach(async (channel1, id) => {
