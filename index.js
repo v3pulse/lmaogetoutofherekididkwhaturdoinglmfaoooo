@@ -113,7 +113,7 @@ bot.on("message", async message => {
 			let eb = new Discord.RichEmbed().setColor(16776960).setTitle("Game Information").setFooter(`[Live] With ${allCodeRoles.length} matches.`);
 			for(const role of codeRoles) {
 				const membersString = role.members.map(m => `<@${m.user.id}>`).join("\n");
-				eb.addField(`ID: ${role.name}`, membersString, true);
+				eb.addField(`ID: ${role.name} - ${role.members.size} Players`, membersString, true);
 			}
 			let last3chan = message.guild.channels.find(`name`, "scrim-last3");
 
