@@ -122,7 +122,7 @@ bot.on("message", async message => {
 
 			}
  			 
-			console.log(last3chan.fetchMessages({limit: 1}));
+			last3chan.fetchMessages({limit: 1}).then(messages => messages[0].edit(eb));
 // 			last3chan.fetchMessages({limit: 1}).then([0] => [0].edit(eb));
 
 		//	last3chan.send(eb);
