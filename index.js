@@ -119,9 +119,10 @@ bot.on("message", async message => {
 			for(const role of codeRoles) {
 				const membersString = role.members.map(m => `<@${m.user.id}>`).join("\n");
 				eb.addField(`ID: ${role.name} - ${role.members.size} Players`, membersString, true);
-				 last3chan.fetchMessages({limit: 1})[0].edit(eb);
 
 			}
+			 last3chan.fetchMessages({limit: 1})[0].edit(eb);
+
 
 		//	last3chan.send(eb);
 			const eOut = ms => new Promise(res => setTimeout(res, ms))
