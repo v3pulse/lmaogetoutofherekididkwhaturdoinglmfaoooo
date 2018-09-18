@@ -96,9 +96,9 @@ bot.on("message", async message => {
 			let last3chan = message.guild.channels.find(`name`, "scrim-last3");
 
 			message.member.addRole(message.guild.roles.find("name", code));
-			 const startTimeout = ms => new Promise(res => setTimeout(res, ms))
-			await startTimeout(150);
-			//message.channel.bulkDelete(1);
+// 			 const startTimeout = ms => new Promise(res => setTimeout(res, ms))
+// 			await startTimeout(150);
+//			message.channel.bulkDelete(1);
 			message.member.addRole(message.guild.roles.find("name", "CantType"));
 			const allCodeRoles = message.guild.roles
 			
@@ -116,13 +116,12 @@ bot.on("message", async message => {
 			.setColor(16776960)
 			.setTitle("Game Information")
 			.setFooter(`[Live] With ${allCodeRoles.length} matches.`);
-			const msg = await last3chan.send(eb);
 			for(const role of codeRoles) {
 				const membersString = role.members.map(m => `<@${m.user.id}>`).join("\n");
 				eb.addField(`ID: ${role.name} - ${role.members.size} Players`, membersString, true);
 			}
 
-			last3chan.fetchMessages({limit: 1}).edit(eb);
+			last3chan.fetchMessages({limit: 1})[0].edit(eb);
 			const eOut = ms => new Promise(res => setTimeout(res, ms))
 		  	await eOut(70000);
 		
