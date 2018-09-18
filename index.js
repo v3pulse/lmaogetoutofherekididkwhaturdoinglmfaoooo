@@ -137,9 +137,9 @@ bot.on("message", async message => {
 		
 		
 
-// 	   	}catch(e){
-// 		  	console.log(e.stack);
-// 	  	}
+	   	}catch(e){
+		  	console.log(e.stack);
+	  	}
 		
 
 
@@ -149,7 +149,7 @@ bot.on("message", async message => {
 		
 		
 		
-	  }
+	  //}
  
 });
  
