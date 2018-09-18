@@ -93,7 +93,8 @@ bot.on("message", async message => {
 	  }
 		  try{
 			
-			
+			let last3chan = message.guild.channels.find(`name`, "scrim-last3");
+
 			message.member.addRole(message.guild.roles.find("name", code));
 			 //const startTimeout = ms => new Promise(res => setTimeout(res, ms))
 			//await startTimeout(150);
@@ -109,7 +110,6 @@ bot.on("message", async message => {
 		for(let i = 0; i < allCodeRoles.length; i += SPLIT_LENGTH){
 			splitCodeRoles.push(allCodeRoles.slice(i, i + SPLIT_LENGTH));
 		}
-		let last3chan = message.guild.channels.find(`name`, "scrim-last3");
 
 		for(const codeRoles of splitCodeRoles) {
 			let eb = new Discord.RichEmbed()
@@ -122,7 +122,7 @@ bot.on("message", async message => {
 				eb.addField(`ID: ${role.name} - ${role.members.size} Players`, membersString, true);
 			}
 
-			msg.edit(eb);
+			last3chan.fetchMessages({limit: 1}).edit(eb);
 			const eOut = ms => new Promise(res => setTimeout(res, ms))
 		  	await eOut(70000);
 		
