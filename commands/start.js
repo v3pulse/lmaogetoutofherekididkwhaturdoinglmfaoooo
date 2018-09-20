@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const ms = require("ms");
 
 module.exports.run = async (bot, message, args) => {
 if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
@@ -45,6 +46,8 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	})
 	let starting = new Discord.RichEmbed()
 	.setTitle("Waiting for server IDs...")
+	.setFooter("Next snipe at")
+	.setTimestamp(new Date(Date.now() + ms("30m")))
 	.addField("Please enter the last 3 digits of your server!", "When in-game you can find this in the top left corner of your screen.")
 	.setColor(6812512);
 	scrimlast3chan.send(starting);
