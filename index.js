@@ -70,13 +70,10 @@ bot.on("message", async message => {
 
 	let last3ch = message.guild.channels.find("name", "scrim-last3");
 	  let scrimrole = message.guild.roles.find(`name`, code);
-	  if(message.member.roles.has(scrimrole)) return;
+// 	  if(message.member.roles.has(scrimrole)) return;
 	  if(code.length != 3) return;
 	  if(/[^a-zA-Z0-9]+/g.test(code)) return;
-	  if(message.member.roles.find(r => (/^\w{3}$/).test(r.name))){
-	  message.member.removeRole(message.member.roles.find(r => (/^\w{3}$/).test(r.name)));
-	
-	  }
+
 	
 
 	  let nickname = message.member.nickname;
@@ -128,9 +125,13 @@ bot.on("message", async message => {
 				eb.addField(`ID: ${role.name} - ${role.members.size} Players`, membersString, true);
 
 			}
+				  if(message.member.roles.find(r => (/^\w{3}$/).test(r.name))){
+	  message.member.removeRole(message.member.roles.find(r => (/^\w{3}$/).test(r.name)));
+	
+	  }
  			 
 			last3chan.fetchMessages({limit: 1}).then(m => m.first().edit(eb));
-
+			
 		//	last3chan.send(eb);
 // 			const eOut = ms => new Promise(res => setTimeout(res, ms))
 // 		  	await eOut(70000);
