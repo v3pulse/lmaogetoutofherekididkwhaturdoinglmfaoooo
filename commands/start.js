@@ -54,12 +54,12 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	.setDescription("Loading...");
 	scrimlast3chan.send(gameinfo);
 	
-	await startTimeout(60000);
-	scrimlast3chan.overwritePermissions(message.guild.id, {
-		SEND_MESSAGES: false
-	});
+// 	await startTimeout(60000);
+// 	scrimlast3chan.overwritePermissions(message.guild.id, {
+// 		SEND_MESSAGES: false
+// 	});
 	
-	scrimlast3chan.send("Chat is now **LOCKED**...");
+// 	scrimlast3chan.send("Chat is now **LOCKED**...");
 	message.guild.roles.find(role => role.name === "CantType").delete("yeetg");
 
 // 	let startEmbed = new Discord.RichEmbed()
@@ -118,39 +118,39 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	
 
 	
-	let nextgameEmbed = new Discord.RichEmbed()
-	.setTitle("**Next snipe in approx...**")
-	.setDescription("*25 Minutes*")
-	.setColor(13859315);
-	let last3chan = message.guild.channels.find(`name`, "scrim-last3");
-		scrimlast3chan.overwritePermissions(message.guild.id, {
-		SEND_MESSAGES: false
-			})
+// 	let nextgameEmbed = new Discord.RichEmbed()
+// 	.setTitle("**Next snipe in approx...**")
+// 	.setDescription("*25 Minutes*")
+// 	.setColor(13859315);
+// 	let last3chan = message.guild.channels.find(`name`, "scrim-last3");
+// 		scrimlast3chan.overwritePermissions(message.guild.id, {
+// 		SEND_MESSAGES: false
+// 			})
 
 		
 		
-	await startTimeout(3000);
-		const agree = "👍";
-	const disagree = "👎";
+// 	await startTimeout(3000);
+// 		const agree = "👍";
+// 	const disagree = "👎";
 
-	let testEmbed = new Discord.RichEmbed()
-	.setTitle("[Poll] Should We Restart?")
-	.setDescription("Please vote below.")
-	.setFooter("Note: The host will decide a restart!")
-	.setColor(16097625);
-	let msg = await last3chan.send(testEmbed);
-	await msg.react(agree);
-	msg.react(disagree);
-	const endTime = Date.now() + 1000 * 60 * 25;
-	const sentMessage = await scrimlast3chan.send(nextgameEmbed);
-	let now;
-	while( (now = Date.now()) < endTime ) {
-		let minsRemaining = (endTime - now) / (1000 * 60);
-		minsRemaining = Math.floor(minsRemaining);
-		nextgameEmbed.setDescription(`*${minsRemaining} Minutes.*`)
-		sentMessage.edit(nextgameEmbed);
-		await startTimeout(1000 * 60);
-	}
+// 	let testEmbed = new Discord.RichEmbed()
+// 	.setTitle("[Poll] Should We Restart?")
+// 	.setDescription("Please vote below.")
+// 	.setFooter("Note: The host will decide a restart!")
+// 	.setColor(16097625);
+// 	let msg = await last3chan.send(testEmbed);
+// 	await msg.react(agree);
+// 	msg.react(disagree);
+// 	const endTime = Date.now() + 1000 * 60 * 25;
+// 	const sentMessage = await scrimlast3chan.send(nextgameEmbed);
+// 	let now;
+// 	while( (now = Date.now()) < endTime ) {
+// 		let minsRemaining = (endTime - now) / (1000 * 60);
+// 		minsRemaining = Math.floor(minsRemaining);
+// 		nextgameEmbed.setDescription(`*${minsRemaining} Minutes.*`)
+// 		sentMessage.edit(nextgameEmbed);
+// 		await startTimeout(1000 * 60);
+// 	}
 	
 	
 		
