@@ -127,7 +127,7 @@ bot.on("message", async message => {
 
 		for(const codeRoles of splitCodeRoles) {
 			let eb = new Discord.RichEmbed()
-			.setColor(16776960)
+			.setColor(6378143)
 			.setTitle("Game Information")
 			.setFooter(`[Live] With ${allCodeRoles.length} matches.`);
 			for(const role of codeRoles) {
