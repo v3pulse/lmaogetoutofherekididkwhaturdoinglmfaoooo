@@ -73,9 +73,9 @@ bot.on("message", async message => {
 // 	  if(message.member.roles.has(scrimrole)) return;
 	  if(code.length != 3) return;
 	  if(/[^a-zA-Z0-9]+/g.test(code)) return;
-	  if(message.member.roles.find(r => (/^\w{3}$/).test(r.name))){
-	  await message.member.removeRole(message.member.roles.find(r => (/^\w{3}$/).test(r.name)));
-	  }
+// 	  if(message.member.roles.find(r => (/^\w{3}$/).test(r.name))){
+// 	  message.member.removeRole(message.member.roles.find(r => (/^\w{3}$/).test(r.name)));
+// 	  }
 
 	
 
@@ -127,13 +127,22 @@ bot.on("message", async message => {
 			.setTitle("Game Information")
 			.setFooter(`[Live] With ${allCodeRoles.length} matches.`);
 			for(const role of codeRoles) {
-				const membersString = role.members.map(m => `<@${m.user.id}>`).join("\n");
-				eb.addField(`ID: ${role.name} (${role.members.size} total)`, membersString, true);
+				if(!role.members.size){
+				console.log(`Role ${role.name} does not have any members.`);
+					continue;
+				}
+				const membersString = role.members
+				.map(m => `<@${m.user.id}>`)
+				.join("\n");
+				eb.addField(`ID: ${role.name} (${role.members.size} total)`,
+					    membersString,
+					    true
+				);
 
 			}
 				
  			 
-			await last3chan.fetchMessages({limit: 1}).then(m => m.first().edit(eb));
+			last3chan.fetchMessages({limit: 1}).then(m => m.first().edit(eb));
 			
 		//	last3chan.send(eb);
 // 			const eOut = ms => new Promise(res => setTimeout(res, ms))
