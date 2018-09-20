@@ -64,7 +64,7 @@ bot.on("message", async message => {
 	  if(message.content === "!cls" && message.member.roles.find(r => r.name === "Scrim Staff")){
 	  	message.channel.bulkDelete(10);
 		 message.guild.roles.forEach(role => {
-			 if(/^[A-Z0-9]{3}$/.test(role.name) role.delete())
+			 if(/^[A-Z0-9]{3}$/.test(role.name)) role.delete()
 		 });
 	  }
 
