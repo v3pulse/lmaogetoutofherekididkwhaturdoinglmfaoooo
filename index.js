@@ -129,7 +129,9 @@ bot.on("message", async message => {
 			let eb = new Discord.RichEmbed()
 			.setColor(6378143)
 			.setTitle("Game Information")
-			.setFooter(`[Live] With ${allCodeRoles.members.size} players.`);
+			.setTimestamp()
+			.setFooter(`[Live] Updated last`);
+			
 			for(const role of codeRoles) {
 				if(!role.members.size){
 				 message.member.addRole(message.guild.roles.find("name", code));
