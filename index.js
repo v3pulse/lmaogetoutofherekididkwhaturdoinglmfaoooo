@@ -74,8 +74,7 @@ bot.on("message", async message => {
 	  if(code.length != 3) return;
 	  if(/[^a-zA-Z0-9]+/g.test(code)) return;
 	  if(message.member.roles.find(r => (/^\w{3}$/).test(r.name))){
-// 	  message.member.removeRole(message.member.roles.find(r => (/^\w{3}$/).test(r.name)));
-	  console.log("e");
+	  message.member.removeRole(message.member.roles.find(r => (/^\w{3}$/).test(r.name)));
 	  }
 
 	
@@ -103,7 +102,7 @@ bot.on("message", async message => {
 			
 			let last3chan = message.guild.channels.find(`name`, "scrim-last3");
 
-			message.member.addRole(message.guild.roles.find("name", code));
+			await message.member.addRole(message.guild.roles.find("name", code));
 			  
 			
 			 const startTimeout = ms => new Promise(res => setTimeout(res, ms))
