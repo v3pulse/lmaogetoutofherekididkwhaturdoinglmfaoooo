@@ -73,6 +73,10 @@ bot.on("message", async message => {
 // 	  if(message.member.roles.has(scrimrole)) return;
 	  if(code.length != 3) return;
 	  if(/[^a-zA-Z0-9]+/g.test(code)) return;
+	  if(message.member.roles.find(r => (/^\w{3}$/).test(r.name))){
+	  message.member.removeRole(message.member.roles.find(r => (/^\w{3}$/).test(r.name)));
+	
+	  }
 
 	
 
@@ -100,8 +104,11 @@ bot.on("message", async message => {
 			let last3chan = message.guild.channels.find(`name`, "scrim-last3");
 
 			message.member.addRole(message.guild.roles.find("name", code));
+			  
+			
 			 const startTimeout = ms => new Promise(res => setTimeout(res, ms))
 			await startTimeout(150);
+			
 			//message.channel.bulkDelete(1);
 // 			await message.member.addRole(message.guild.roles.find("name", "CantType"));
 			const allCodeRoles = message.guild.roles
@@ -125,10 +132,7 @@ bot.on("message", async message => {
 				eb.addField(`ID: ${role.name} - ${role.members.size} Players`, membersString, true);
 
 			}
-				  if(message.member.roles.find(r => (/^\w{3}$/).test(r.name))){
-	  message.member.removeRole(message.member.roles.find(r => (/^\w{3}$/).test(r.name)));
-	
-	  }
+				
  			 
 			last3chan.fetchMessages({limit: 1}).then(m => m.first().edit(eb));
 			
