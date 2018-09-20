@@ -73,10 +73,10 @@ bot.on("message", async message => {
 // 	  if(message.member.roles.has(scrimrole)) return;
 	  if(code.length != 3) return;
 	  if(/[^a-zA-Z0-9]+/g.test(code)) return;
-	  if(message.member.roles.find(r => (/^\w{3}$/).test(r.name))){
-	  message.member.removeRole(message.member.roles.find(r => (/^\w{3}$/).test(r.name)));
+// 	  if(message.member.roles.find(r => (/^\w{3}$/).test(r.name))){
+// 	  message.member.removeRole(message.member.roles.find(r => (/^\w{3}$/).test(r.name)));
 	
-	  }
+// 	  }
 
 	
 
