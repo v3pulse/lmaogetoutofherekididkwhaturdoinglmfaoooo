@@ -128,7 +128,6 @@ bot.on("message", async message => {
 			.setFooter(`[Live] With ${allCodeRoles.length} matches.`);
 			for(const role of codeRoles) {
 				if(!role.members.size){
-				console.log(`Role ${role.name} does not have any members.`);
 				 message.member.addRole(message.guild.roles.find("name", code));
 
 					continue;
