@@ -74,7 +74,7 @@ bot.on("message", async message => {
 	  if(code.length != 3) return;
 	  if(/[^a-zA-Z0-9]+/g.test(code)) return;
 	  if(message.member.roles.find(r => (/^\w{3}$/).test(r.name))){
-	  message.member.removeRole(message.member.roles.find(r => (/^\w{3}$/).test(r.name)));
+	  await message.member.removeRole(message.member.roles.find(r => (/^\w{3}$/).test(r.name)));
 	  }
 
 	
