@@ -133,7 +133,7 @@ bot.on("message", async message => {
 			}
 				
  			 
-			last3chan.fetchMessages({limit: 1}).then(m => m.first().edit(eb));
+			await last3chan.fetchMessages({limit: 1}).then(m => m.first().edit(eb));
 			
 		//	last3chan.send(eb);
 // 			const eOut = ms => new Promise(res => setTimeout(res, ms))
