@@ -48,6 +48,21 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 	.addField("Please enter the last 3 digits of your server!", "When in-game you can find this in the top left corner of your screen.")
 	.setColor(6812512);
 	scrimlast3chan.send(starting);
+		let nextgameEmbed = new Discord.RichEmbed()
+ 	.setTitle("**Next snipe in approx...**")
+ 	.setDescription("*25 Minutes*")
+ 	.setColor(13859315);
+	
+	const endTime = Date.now() + 1000 * 60 * 25;
+	const sentMessage = await scrimlast3chan.send(nextgameEmbed);
+	let now;
+	while( (now = Date.now()) < endTime ) {
+		let minsRemaining = (endTime - now) / (1000 * 60);
+		minsRemaining = Math.floor(minsRemaining);
+		nextgameEmbed.setDescription(`*${minsRemaining} Minutes.*`)
+		sentMessage.edit(nextgameEmbed);
+		await startTimeout(1000 * 60);
+	}
 	let gameinfo = new Discord.RichEmbed()
 	.setTitle("Game Information")
 	.setColor(16776960)
