@@ -62,10 +62,11 @@ if (!message.member.roles.find(r => r.name === "Scrim Staff")) return;
 		nextgameEmbed.setDescription(`*${minsRemaining} Minutes.*`)
 		sentMessage.edit(nextgameEmbed);
 		await startTimeout(1000 * 60);
+		continue;
 	}
 	let gameinfo = new Discord.RichEmbed()
 	.setTitle("Game Information")
-	.setColor(16776960)
+	.setColor(6378143)
 	.setDescription("Loading...");
 	scrimlast3chan.send(gameinfo);
 	
