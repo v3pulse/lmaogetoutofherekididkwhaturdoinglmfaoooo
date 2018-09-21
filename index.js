@@ -107,10 +107,12 @@ bot.on("message", async message => {
 			let last3chan = message.guild.channels.find(`name`, "scrim-last3");
 
 			 message.member.addRole(message.guild.roles.find("name", code));
+			 let roleHasbeenGiven = await message.member.addRole(message.guild.roles.find(r => r.name === code));
+			 if(!roleHasbeenGiven) return;
 			  
 			
-			 const startTimeout = ms => new Promise(res => setTimeout(res, ms))
-			await startTimeout(150);
+// 			 const startTimeout = ms => new Promise(res => setTimeout(res, ms))
+// 			await startTimeout(150);
 			
 			//message.channel.bulkDelete(1);
 // 			await message.member.addRole(message.guild.roles.find("name", "CantType"));
