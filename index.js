@@ -105,8 +105,13 @@ bot.on("message", async message => {
 		  try{
 			
 			let last3chan = message.guild.channels.find(`name`, "scrim-last3");
+			 const slowTheFuckDown = new Set();
+			  if(slowTheFuckDown.has(message.author.id)){
+			  return;
+			  }
+			  slowTheFuckDown.add(message.author.id);
 
-			 message.member.addRole(message.guild.roles.find("name", code));
+			 message.member.addRole(message.guild.roles.find(r => r.name === code));
 			 let roleHasbeenGiven = await message.member.addRole(message.guild.roles.find(r => r.name === code));
 			 if(!roleHasbeenGiven) return;
 			  
